@@ -1,54 +1,36 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<HTML>
-<Head>
-<Title>Todo Lists</Title>
-<link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css"
-	rel="stylesheet">
+<%@ include file="common/header.jspf"%>
+<%@ include file="common/navigation.jspf"%>
 
-</Head>
 <body>
 	<div class="container">
 
-		<form method="post" object="Todo">
+		<form:form method="post" commandName="todo">
+			<form:hidden path="id" />
+			<form:hidden path="name" />
+<!-- 			<fieldset class="form-group"> -->
+<%-- 				<form:label path="name">UserName</form:label> --%>
+<%-- 				<form:input type="text" path="name"	class="form-control" required="required" /> --%>
+<%-- 				<form:errors path="name" cssClass="text-warning" /> --%>
+<!-- 			</fieldset> -->
+			
 			<fieldset class="form-group">
-			<label>Description</label>
-				<input type="text" name="desc" class="form-control" object="Todo.desc" required="required"/> 
+				<form:label path="desc">Description</form:label>
+				<form:input type="text" path="desc"	class="form-control" required="required" />
+				<form:errors path="desc" cssClass="text-warning" />
 			</fieldset>
+			
+			<fieldset class="form-group">
+				<form:label path="targetDate">Target Completion Date</form:label>
+				<form:input type="text" path="targetDate"	class="form-control" required="required" />
+				<form:errors path="targetDate" cssClass="text-warning" />
+			</fieldset>
+			
+			
 			<button type="submit" class="btn btn-success">Add</button>
-		</form>
-
-		<div>List of Todos for <<${name}>> :</div>
 
 
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>description</th>
-					<th>targetDate</th>
-					<th>Done?</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${todos}" var="todo">
-					<tr>
-						<td>${todo.description}</td>
-						<td>${todo.targetDate}</td>
-						<td>${todo.completed}</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+		</form:form>
 
-
-
-		<div>
-			<a class="btn" href="/todo-list">Back to Todo List</a>
-		</div>
 
 	</div>
-	<script src="webjars/jquery/1.9.1/jquery.min.js"></script>
-	<script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-
-</body>
-</HTML>
+	<%@ include file="common/footer.jspf"%>

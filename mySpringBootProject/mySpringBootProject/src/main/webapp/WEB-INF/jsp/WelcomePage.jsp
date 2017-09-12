@@ -1,10 +1,9 @@
-<HTML>
-<head>
-<title>Welcom Page</title>
-</head>
-
-<body>You have been succesfully Logged in as  ${name}  name
+<%@ include file="common/header.jspf" %>
+<%@ include file="common/navigation.jspf" %>
 
 
-</body>
-</HTML>
+<div class="container">
+You have been succesfully Logged in as  ${name}  name
+</div>
+
+<%@ include file="common/footer.jspf" %>

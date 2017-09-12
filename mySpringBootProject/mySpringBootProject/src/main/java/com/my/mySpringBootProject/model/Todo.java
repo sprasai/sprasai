@@ -4,15 +4,20 @@ import java.util.Date;
 
 public class Todo {
 		private int id;
-		private String description;
+		private String desc;
 		private String name;
 		private Date targetDate;
 		private boolean isCompleted;
 		
-		public Todo(int id, String name, String description, Date targetDate, boolean isCompleted) {
+		
+		public Todo() {
+		super();	
+		}
+
+		public Todo(int id, String name, String desc, Date targetDate, boolean isCompleted) {
 			super();
 			this.id = id;
-			this.description = description;
+			this.desc = desc;
 			this.name = name;
 			this.targetDate = targetDate;
 			this.isCompleted = isCompleted;
@@ -26,12 +31,12 @@ public class Todo {
 			this.id = id;
 		}
 
-		public String getDescription() {
-			return description;
+		public String getDesc() {
+			return desc;
 		}
 
-		public void setDescription(String description) {
-			this.description = description;
+		public void setDesc(String desc) {
+			this.desc = desc;
 		}
 
 		public String getName() {
@@ -60,9 +65,11 @@ public class Todo {
 
 		@Override
 		public String toString() {
-			return "Todo [id=" + id + ", description=" + description + ", name=" + name + ", targetDate=" + targetDate
+			return "Todo [id=" + id + ", desc=" + desc + ", name=" + name + ", targetDate=" + targetDate
 					+ ", isCompleted=" + isCompleted + "]";
 		}
+
+		 
 
 	 
 	
