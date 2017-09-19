@@ -36,7 +36,8 @@ public class TodoController {
 	
 	@RequestMapping(value="/list-todos", method=RequestMethod.GET)
  	public String showTodos(ModelMap model) {		
-		String name = (String) model.get("name");
+		String name = getLoggedInUser(model);
+		System.out.println("getLoggedInUser in Todo controller " + model.toString());
 		model.put("todos", todoService.retreiveTodList( name ));
 		return "list-todos";
 	}
@@ -44,29 +45,32 @@ public class TodoController {
  
 	@RequestMapping(value="/add-todo", method=RequestMethod.GET)
  	public String showAddTodoPage(ModelMap model) {		
-		model.addAttribute("todo", new Todo(0,(String) model.get("name"),"Default Desc",new Date(),false));
+		model.addAttribute("todo", new Todo(0,getLoggedInUser(model),"Default Desc",new Date(),false));
 		return "add-todo";
 	}
 	
 	@RequestMapping(value="/add-todo", method=RequestMethod.POST)
- 	public String addTodoList(ModelMap model, @Valid Todo todo, BindingResult result) {
+ 	public String addTodoItem(ModelMap model, @Valid Todo todo, BindingResult result) {
 		if(result.hasErrors()) {
-			return "todo";
-		}
-		
-		todoService.addTodo((String) model.get("name"), todo.getDesc(), todo.getTargetDate(), false);
-		//todoService.addTodo(todo.getName(), todo.getDesc(), todo.getTargetDate(), false);		
+			System.out.println("result has errors true in add todo " + result.toString());
+			return "add-todo";
+		}		
+		todoService.addTodo(getLoggedInUser(model), todo.getDesc(), todo.getTargetDate(), false);
 		return "redirect:/list-todos";
 	}
-	
+	 
 	
 	@RequestMapping(value="/delete-todo", method=RequestMethod.GET)
  	public String deleteTodoList(ModelMap model, @RequestParam int id) {
-		String name = (String) model.get("name");
+		String name = getLoggedInUser(model);
 		String deletedTodo = todoService.deleteTodo(id); 
 		model.put("todos", todoService.retreiveTodList(name));
 		model.put("todoMessage", deletedTodo);
 		return "redirect:/list-todos";
+	}
+
+	private String getLoggedInUser(ModelMap model) {
+		return (String) model.get("name");
 	}
 	
 }

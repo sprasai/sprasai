@@ -36,6 +36,12 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		
+		<!-- add this for spring boot security auto configuration...gives login form and integrated security for all pages -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		
 		<!--  java standard tags library -->
 		<dependency>
 			<groupId>javax.servlet</groupId>

@@ -18,18 +18,14 @@ public class LoginController {
 	@Autowired
 	LoginService loginService;
 	
-	@RequestMapping(value="/login", method=RequestMethod.GET)
- 	//@ResponseBody
-	public String showLoginPage(ModelMap model) {		
-		return "LoginPage";
-	}
+	 
 	
-//	@RequestMapping(value="/login", method=RequestMethod.GET)
-// 	//@ResponseBody
-//	public String sayHello(ModelMap model, @RequestParam String name) {
-//		model.put("errorMessage", "Pleaes login!!! " + name);
-//		return "LoginPage";
-//	}
+	@RequestMapping(value="/", method=RequestMethod.GET)
+ 	//@ResponseBody
+	public String showLoginPage(ModelMap model) {
+		model.put("name", "in28Minutes");
+		return "WelcomePage";
+	}
 	
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)

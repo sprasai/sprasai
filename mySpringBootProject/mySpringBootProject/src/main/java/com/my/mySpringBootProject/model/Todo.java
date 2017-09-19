@@ -2,8 +2,12 @@ package com.my.mySpringBootProject.model;
 
 import java.util.Date;
 
+import javax.validation.constraints.Size;
+
 public class Todo {
 		private int id;
+		
+		@Size(min=10, message="Enter atleast 10 characters...")
 		private String desc;
 		private String name;
 		private Date targetDate;

@@ -35,6 +35,7 @@ public class TodoService {
 	}
 
 	public void addTodo(String name, String desc, Date targetDate, boolean isDone) {
+		System.out.println("name in todo service " + name);
 		todos.add(new Todo(++todoCount, name, desc, targetDate, isDone));
 	}
 	
